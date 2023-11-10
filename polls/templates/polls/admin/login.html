@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hi Admin</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <div id="clouds">
+        <div class="cloud x1"></div>
+        <div class="cloud x2"></div>
+        <div class="cloud x3"></div>
+        <div class="cloud x4"></div>
+        <div class="cloud x5"></div>
+    </div>
+    {% block content %}
+    <div class="container">
+        <div id="login">
+           <form action="{% url 'polls:login' %}" method="post">
+                <fieldset class="clearfix">
+                    {% csrf_token%}
+                    <div class="">
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} ><b>{{message}}</b></p>
+                        {% endfor %}
+                    </div>
+                    <p><span class="fontawesome-user"></span><input type="text" name="username" class="form_login" placeholder="username"></p>
+                    <p><span class="fontawesome-lock"></span><input type="password" name="password" class="form_login" placeholder="password"></p>
+                    <p><input type="submit" name="sub" value="Login"></p>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+    {% endblock %}
+    <div class="bottom">
+        <h3><a href="{% url 'polls:index'%}">HI HOMEPAGE</a></h3>
+    </div>
+</body>
+</html>

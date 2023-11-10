@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator	</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Room <small>Add </small>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <form method='POST' action="{% url 'polls:aroom'%}">
+                                    {% csrf_token%}
+                                        <div class="form-group">
+                                            <label>Name Room</label>
+                                            <input class="form-control" type="text" name="name_room" value="">
+                                            <br/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Floor</label>
+                                            <select class="form-control" name="tang">
+                                                {% for floor in floor %}
+                                                    <option value="{{ floor.idFloor }}">{{floor.nameFloor}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <br/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Room kind</label>
+                                            <select class="form-control" name="loaiphong">
+                                                {% for roomkind in roomkind %}
+                                                <option value="{{ roomkind.idKind }}">{{ roomkind.get_nameKind_display }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <br/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <input class="form-control" type="text" name="trangthai" >
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">
+                                            Add Room  <span class="badge"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End  Basic Table  -->
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JS Scripts-->
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+
+</body>
+
+</html>

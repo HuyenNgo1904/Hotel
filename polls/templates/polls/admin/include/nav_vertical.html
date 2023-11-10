@@ -1,0 +1,36 @@
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <a id="home_page" href="{% url 'polls:home' %}"><i class="fas fa-home"></i></i> Home</a>
+            </li>
+            <li>
+                <a id="floor_page" href="{% url 'polls:floor'%}"><i class="fas fa-building"></i> Floor</a>
+            </li>
+            <li>
+                <a id="room_page" href="{% url 'polls:room' %}"><i class="fa fa-desktop"></i> Room</a>
+            </li>
+            <li>
+                <a id="kind_page" href="{% url 'polls:roomkind' %}"><i class="fas fa-th-list"></i> Room kind</a>
+            </li>
+            <li>
+                <a id="booking_page" href="{% url 'polls:bookroom' %}"><i class="fas fa-check-square"></i> Reservation request</a>
+            </li>
+            <li>
+                <a id="booking_page" href="{% url 'polls:bookingManage' %}"><i class="fas fa-check-double"></i> Booking</a>
+            </li>
+            <li>
+                <a href="{% url 'polls:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- <script>
+    $(document).ready(function() {
+        if ($('#name_page').html() == "Home") {
+            $('#home_page').class
+        }
+        class="active-menu"
+    });
+</script> -->

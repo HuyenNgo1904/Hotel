@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+<body>
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Request booking
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            {% if message and message != "" %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                </div>
+                                <div class="panel-heading"></div>
+                            {% endif %}
+                            <div class="panel-body">
+                                <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer info</th>
+                                            <th>Room kind</th>
+                                            <th>Date check in</th>
+                                            <th>Date check out</th>
+                                            <th>Number's room</th>
+                                            <th width="8%">Details</th>
+                                            <th width="10%">Status</th>
+                                            <th width="10%">Rom filter</th>
+                                            <th width="10%">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for request in list_request %}
+                                        <tr>
+                                            <td>{{ request.idRequest }}</td>
+                                            <td>
+                                                <a type="button" class="bookroom-link" data-toggle="modal" data-target="#customer{{ request.idCustomer.idCustomer }}">
+                                                    {{ request.customer.nameCustomer }}
+                                                </a>
+                                                <div class="modal" id="customer{{ request.idCustomer.idCustomer }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title"><b>Customer information</b></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><span class="modal-span">Id</span>:&emsp; {{ request.customer.idCustomer }}</p>
+                                                                <p><span class="modal-span">Name</span>:&emsp; {{ request.customer.nameCustomer }}</p>
+                                                                <p><span class="modal-span">Gender</span>:&emsp; {{ request.customer.get_gender_display }}</p>
+                                                                <p><span class="modal-span">Identity card</span>:&emsp; {{ request.customer.identityCard }}</p>
+                                                                <p><span class="modal-span">Phone number</span>:&emsp; {{ request.customer.phoneNumber }}</p>
+                                                                <p><span class="modal-span">Email</span>:&emsp; {{ request.customer.email }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a type="button" class="bookroom-link" data-toggle="modal" data-target="#idKind{{ request.idCustomer.idCustomer }}">
+                                                    {{ request.kind.get_nameKind_display }}
+                                                </a>
+                                                <div class="modal" id="idKind{{ request.idCustomer.idCustomer }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title"><b>Room kind</b></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><span class="modal-span">Id</span>:&emsp; {{ request.kind.idKind }}</p>
+                                                                <p><span class="modal-span">Name kind</span>:&emsp; {{ request.kind.get_nameKind_display }}</p>
+                                                                <p><span class="modal-span">Price (VND/Hour)</span>:&emsp; {{ request.kind.price }}</p>
+                                                                <p><span class="modal-span">Descript</span>:&emsp; {{ request.kind.descript }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ request.dateCheckin|date:"d/m/Y g:i:s" }}</td>
+                                            <td>{{ request.dateCheckout|date:"d/m/Y g:i:s" }}</td>
+                                            <td>{{ request.numberOfRoom }}</td>
+                                            <td>
+                                                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <div class="modal" id="myModal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title"><b>Booking's infomation</b></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><span class="modal-span">Name customer</span>:&emsp;{{ request.customer.nameCustomer }}</p>
+                                                                <p><span class="modal-span">Date check in</span>:&emsp;{{ request.dateCheckin }}</p>
+                                                                <p><span class="modal-span">Date check out</span>:&emsp;{{ request.dateCheckout }}</p>
+                                                                <p><span class="modal-span">Number of room</span>:&emsp;{{ request.numberOfRoom }}</p>
+                                                                <p><span class="modal-span">Number of children</span>:&emsp;{{ request.numberOfChildren }}</p>
+                                                                <p><span class="modal-span">Number of adults</span>:&emsp;{{ request.numberOfAdults }}</p>
+                                                                <p><span class="modal-span">Note</span>:&emsp;{{ request.note }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="hidden" class="id" value="{{ request.idRequest }}">
+                                                <select name="status" class="status">
+                                                    <option value="{{ request.status }}" selected>{{ request.get_status_display }}</option>
+                                                    {% for status in list_status  %}
+                                                        {% if status.0 != request.status %}
+                                                            <option value="{{ status.0 }}">{{ status.1 }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                {% if request.status == 'CD' %}
+                                                    <a href='/hihotel/admin/bookroom/filter/{{ request.idRequest }}' class='btn btn-primary'>
+                                                        <i class="fas fa-filter"></i>
+                                                    </a>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="/hihotel/admin/bookroom/delete/{{ request.idRequest }}" class='btn btn-danger' onclick="return confirm('Are you sure?')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JS Scripts-->
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+    <script>
+        $('.status').change(function () {
+            id = $(this).parent().children('.id').val();
+            status = $(this).val();
+
+            location.href = '/hihotel/admin/bookroom/edit/' + id + '/' + status + '/';
+        });
+    </script>
+
+
+</body>
+</html>

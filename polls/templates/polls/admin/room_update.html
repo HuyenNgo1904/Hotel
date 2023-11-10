@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator	</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Room <small>Edit </small>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <form action="" method = "POST">
+                                        <table>
+                                         {% csrf_token %}
+
+                                         <div class="form-group">
+                                            <label><span style="padding-right:20px;">Name Room: </span></label>
+                                            {{ form.nameRoom }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Floor</label>
+                                            {{ form.floor }}
+                                            <br/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Room kind</label>
+                                            {{ form.kind }}
+                                            <br/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span style="padding-right:20px;">Status: </span></label>
+                                            {{ form.status }}
+                                        </div>
+                                        </table>
+                                        <div style="margin-top:20px;"> <input  type="submit" name="edit room" value="Edit Room" class="submit-btn btn btn-primary"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End  Basic Table  -->
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JS Scripts-->
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('input').addClass('form-control');
+            $('select').addClass('form-control')
+            $('.submit-btn').removeClass('form-control');
+        })
+    </script>
+
+</body>
+
+</html>

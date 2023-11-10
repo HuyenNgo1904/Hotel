@@ -74,9 +74,6 @@ def home(request):
     return render(request, 'polls/admin/home.html')
 
 
-###
-
-### Login, logout và thông tin người dùng - Cảm
 def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator	</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Floor <small>Add </small>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <form action="{% url 'polls:afloor'%}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Name Floor</label>
+                                            <input required class="form-control" type="text" name="name" value="">
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">
+                                            Add Floor  <span class="badge"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End  Basic Table  -->
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JS Scripts-->
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+</body>
+
+</html>

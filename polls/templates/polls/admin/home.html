@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <p id="name_page" style="display: none;">Home</p>
+
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Home page
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JS Scripts-->
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HI HOTEL</title>
+    <!-- Bootstrap Styles-->
+    <link href="{% static 'polls/admin/assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="{% static 'polls/admin/assets/css/custom-styles.css' %}" rel="stylesheet" />
+
+	<!-- //for-mobile-apps -->
+	<link href="{% static 'polls/css/font-awesome.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'polls/css/jquery-ui.css' %}" />
+	<link href="{% static 'polls/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+    <!--fonts-->
+	<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+	<!--//fonts-->
+</head>
+
+<body>
+    <div class="banner-top">
+		<div class="social-bnr-agileits">
+			<ul class="social-icons3">
+				<li><a href="https://www.facebook.com/" class="fa fa-facebook icon-border facebook"> </a></li>
+				<li><a href="https://twitter.com/" class="fa fa-twitter icon-border twitter"> </a></li>
+				<li><a href="https://plus.google.com/u/0/" class="fa fa-google-plus icon-border googleplus"> </a></li>
+			</ul>
+		</div>
+		<div class="contact-bnr-w3-agile">
+			<ul>
+				<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@hhi.com">INFO@HI.COM</a></li>
+				<li><i class="fa fa-phone" aria-hidden="true"></i>090 5987 987</li>
+				<li class="s-bar">
+					<div class="search">
+						<input class="search_box" type="checkbox" id="search_box">
+						<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search"
+								aria-hidden="true"></span></label>
+						<div class="search_form">
+							<form action="#" method="post">
+								<input type="search" name="Search" placeholder=" " required=" " />
+								<input type="submit" value="Search">
+							</form>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="w3_navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div style="background-color: transparent" class="navbar-header navbar-left">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1><a class="navbar-brand" href="{% url 'polls:index'%}"
+							style="text-align: center;"><span>HI</span>
+						</a></h1>
+				</div>
+			</nav>
+		</div>
+	</div>
+    <div id="wrap">
+
+        {% if success %}
+            <p style="color: red; font-size: 25px; text-align: center;">{{success}}</p>
+        {% endif %}
+
+        <div id="page-wrap">
+            <div id="page-inn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            RESERVATION <small></small>
+                        </h1>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-5 col-sm-5">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                PERSONAL INFORMATION
+                            </div>
+                            <div class="panel-body">
+                                {% csrf_token %}
+                                <form name="form" action="{% url 'polls:reservationadd'%}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input name="name" class="form-control" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select name="gender" class="form-control" required>
+                                            <option value="Na">Nam (Male)</option>
+                                            <option value="Nu">Nữ (Female)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Identity Card </label>
+                                        <input name="identitycard" type="text" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input name="email" type="email" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input name="phone" type="text" class="form-control" required>
+                                    </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    RESERVATION INFORMATION
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Kind Room</label>
+                                        <select name="kindroom" class="form-control" required>
+                                            {% if not idKind %}
+                                                <option value="">Choose</option>
+                                            {% endif %}
+                                            {% if listRoomKind %}
+                                                {% for itemKind in listRoomKind %}
+                                                    {% if idKind and itemKind.idKind == idKind %}
+                                                        <option selected value="{{itemKind.idKind}}">{{ itemKind.get_nameKind_display }}</option>
+                                                    {% else %}
+                                                        <option value="{{itemKind.idKind}}">{{ itemKind.get_nameKind_display }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Check-In</label>
+                                        <input name="cin" type="datetime-local" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Check-Out</label>
+                                        <input name="cout" type="datetime-local" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Number Room</label>
+                                        <input name="numberRoom" type="text" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Number Of Children</label>
+                                        <input name="numberChildren" type="text" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Number Of Adults</label>
+                                        <input name="numberAdults" type="text" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Note</label><br />
+                                        <textarea style="width: 100%" name="note" cols="89" rows="4"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="button">
+                        <button class="btnDT"> <a href="{% url 'polls:index'%}">Back</a></button>
+                        <input type="submit" value="Send" name="submit" class="btnDT" style="background-color: #ffce14; padding: 0.4em 2em; color: #000000; display: inline-block; border: 2px solid #ecbf11;"/>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="{% static 'polls/admin/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- Bootstrap Js -->
+    <script src="{% static 'polls/admin/assets/js/bootstrap.min.js' %}"></script>
+    <!-- Metis Menu Js -->
+    <script src="{% static 'polls/admin/assets/js/bootstrap.min.js' %}x"></script>
+
+
+
+</body>
+
+</html>

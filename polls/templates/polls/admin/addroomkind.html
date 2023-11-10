@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator	</title>
+
+    {% include './include/link_lib.html' %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% include "./include/nav_horizontal.html" %}
+        {% include "./include/nav_vertical.html" %}
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+    <div id="page-inner">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Room kind <small>Add </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+
+
+            <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                <div class="panel-body">
+                                   <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form action="" method = "POST">
+                            <table>
+                             {% csrf_token %}
+                             <p>{{form.as_table}}</p>
+                            </table>
+                            <input type="submit" name="add room kind" value="Add Room Kind">
+                        </form>
+                    </div>
+                </div>
+            </div>
+              <!-- End  Basic Table  -->
+
+        <!-- /. ROW  -->
+
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{% static 'polls/admin/assets/js/jquery-1.10.2.js' %}"></script>
+<!-- Bootstrap Js -->
+<script src="{% static 'polls/admin/assets/js/bootstrap.min.js' %}"></script>
+<!-- Metis Menu Js -->
+<script src="{% static 'polls/admin/assets/js/jquery.metisMenu.js' %}"></script>
+<!-- Morris Chart Js -->
+<script src="{% static 'polls/admin/assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+
+<!-- Custom Js -->
+<script src="{% static 'polls/admin/assets/js/custom-scripts.js' %}"></script>
+
+
+</body>
+
+</html>
