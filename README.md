@@ -1,16 +1,16 @@
 # Hotel Manager
-Tạo cơ sở dữ liệu tên "Hotel" trong MySQL.
+Create a database named "Hotel" in MySQL.
 
-Sửa thông tin kết nối cơ sở dữ liệu (username, password) trong settings.py
+Edit database connection information (username, password) in settings.py
 
-Chạy makemigrations/migrate để tạo cơ sở dữ liệu
+Run makemigrations/migrate to create the database
 
-Chạy phần insert dữ liệu từ file Hotel.sql (đính kèm)
+Run insert data from Hotel.sql file (attached)
 
-Tạo superuser:
+Create superuser:
 
 python manage.py createsuperuser --username=admin --email=admin@example.com
 
-Dùng username "admin" và password vừa tạo để đăng nhập vào trang admin
+Use the username "admin" and the newly created password to log in to the admin page
 
-Link đến app: localhost:8000/hihotel, link đến trang admin: localhost:8000/hihotel/admin
+Link to app: localhost:8000/hihotel, link to admin page: localhost:8000/hihotel/admin
